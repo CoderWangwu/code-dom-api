@@ -1,10 +1,10 @@
 package com.code.dom.java.utils;
 
-import com.code.dom.java.JavaVisibility;
-import com.code.dom.java.Method;
-import com.code.dom.java.Parameter;
-import com.code.dom.java.Field;
-import com.code.dom.java.FullyQualifiedJavaType;
+import com.code.dom.java.define.JavaVisibility;
+import com.code.dom.java.define.Method;
+import com.code.dom.java.define.Parameter;
+import com.code.dom.java.define.Field;
+import com.code.dom.java.define.FullyQualifiedJavaType;
 
 import java.util.Locale;
 

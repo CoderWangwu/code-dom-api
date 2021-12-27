@@ -1,4 +1,4 @@
-package com.code.dom.java;
+package com.code.dom.java.define;
 
 /**
  * @Author: wg

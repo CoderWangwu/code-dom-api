@@ -1,6 +1,6 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.TopLevelClass;
+import com.code.dom.java.define.TopLevelClass;
 
 import java.util.ArrayList;
 import java.util.List;

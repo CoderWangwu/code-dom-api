@@ -1,4 +1,4 @@
-package com.code.dom.java;
+package com.code.dom.java.define;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.TreeSet;
 
 /**
  * @Author: wg
- * @Date: 2021/12/27 下午9:54
+ * @Date: 2021/12/27 下午9:48
  */
-public class TopLevelClass extends InnerClass implements CompilationUnit {
+public class Interface extends InnerInterface implements CompilationUnit {
 
     private final Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
 
@@ -17,12 +17,12 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
 
     private final List<String> fileCommentLines = new ArrayList<>();
 
-    public TopLevelClass(FullyQualifiedJavaType type) {
+    public Interface(FullyQualifiedJavaType type) {
         super(type);
     }
 
-    public TopLevelClass(String typeName) {
-        this(new FullyQualifiedJavaType(typeName));
+    public Interface(String type) {
+        this(new FullyQualifiedJavaType(type));
     }
 
     @Override
@@ -30,17 +30,10 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         return importedTypes;
     }
 
-    public void addImportedType(String importedType) {
-        addImportedType(new FullyQualifiedJavaType(importedType));
-    }
-
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
-        if (importedType != null
-                && importedType.isExplicitlyImported()
-                && !importedType.getPackageName().equals(
-                getType().getPackageName())
-                && !importedType.getShortName().equals(getType().getShortName())) {
+        if (importedType.isExplicitlyImported()
+                && !importedType.getPackageName().equals(getType().getPackageName())) {
             importedTypes.add(importedType);
         }
     }
@@ -80,4 +73,3 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         return visitor.visit(this);
     }
 }
-

@@ -1,9 +1,9 @@
 package com.code.dom.java.render;
 
 import com.code.dom.java.utils.CustomCollectors;
-import com.code.dom.java.CompilationUnit;
-import com.code.dom.java.InnerEnum;
-import com.code.dom.java.JavaDomUtils;
+import com.code.dom.java.define.CompilationUnit;
+import com.code.dom.java.define.InnerEnum;
+import com.code.dom.java.define.JavaDomUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,8 +1,8 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.CompilationUnit;
-import com.code.dom.java.Field;
-import com.code.dom.java.JavaDomUtils;
+import com.code.dom.java.define.CompilationUnit;
+import com.code.dom.java.define.Field;
+import com.code.dom.java.define.JavaDomUtils;
 
 import java.util.ArrayList;
 import java.util.List;

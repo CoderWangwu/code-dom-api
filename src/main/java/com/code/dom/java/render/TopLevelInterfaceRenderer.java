@@ -1,6 +1,6 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.Interface;
+import com.code.dom.java.define.Interface;
 
 import java.util.ArrayList;
 import java.util.List;

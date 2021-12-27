@@ -1,10 +1,10 @@
 package com.code.dom.java.utils;
 
-import com.code.dom.java.TopLevelClass;
-import com.code.dom.java.TopLevelEnumeration;
-import com.code.dom.java.CompilationUnit;
-import com.code.dom.java.CompilationUnitVisitor;
-import com.code.dom.java.Interface;
+import com.code.dom.java.define.TopLevelClass;
+import com.code.dom.java.define.TopLevelEnumeration;
+import com.code.dom.java.define.CompilationUnit;
+import com.code.dom.java.define.CompilationUnitVisitor;
+import com.code.dom.java.define.Interface;
 import com.code.dom.java.render.TopLevelClassRenderer;
 import com.code.dom.java.render.TopLevelEnumerationRenderer;
 import com.code.dom.java.render.TopLevelInterfaceRenderer;

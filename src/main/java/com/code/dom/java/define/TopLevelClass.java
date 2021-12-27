@@ -1,4 +1,4 @@
-package com.code.dom.java;
+package com.code.dom.java.define;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.TreeSet;
 
 /**
  * @Author: wg
- * @Date: 2021/12/27 下午9:56
+ * @Date: 2021/12/27 下午9:54
  */
-public class TopLevelEnumeration extends InnerEnum implements CompilationUnit {
+public class TopLevelClass extends InnerClass implements CompilationUnit {
 
     private final Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
 
@@ -17,12 +17,12 @@ public class TopLevelEnumeration extends InnerEnum implements CompilationUnit {
 
     private final List<String> fileCommentLines = new ArrayList<>();
 
-    public TopLevelEnumeration(FullyQualifiedJavaType type) {
+    public TopLevelClass(FullyQualifiedJavaType type) {
         super(type);
     }
 
-    public TopLevelEnumeration(String type) {
-        super(type);
+    public TopLevelClass(String typeName) {
+        this(new FullyQualifiedJavaType(typeName));
     }
 
     @Override
@@ -30,11 +30,17 @@ public class TopLevelEnumeration extends InnerEnum implements CompilationUnit {
         return importedTypes;
     }
 
+    public void addImportedType(String importedType) {
+        addImportedType(new FullyQualifiedJavaType(importedType));
+    }
+
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
-        if (importedType.isExplicitlyImported()
+        if (importedType != null
+                && importedType.isExplicitlyImported()
                 && !importedType.getPackageName().equals(
-                getType().getPackageName())) {
+                getType().getPackageName())
+                && !importedType.getShortName().equals(getType().getShortName())) {
             importedTypes.add(importedType);
         }
     }

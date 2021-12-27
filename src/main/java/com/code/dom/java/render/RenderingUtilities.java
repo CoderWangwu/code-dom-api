@@ -1,16 +1,16 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.Method;
-import com.code.dom.java.TypeParameter;
+import com.code.dom.java.define.Method;
+import com.code.dom.java.define.TypeParameter;
 import com.code.dom.java.utils.CustomCollectors;
 import com.code.dom.java.utils.StringUtility;
-import com.code.dom.java.CompilationUnit;
-import com.code.dom.java.Field;
-import com.code.dom.java.FullyQualifiedJavaType;
-import com.code.dom.java.InitializationBlock;
-import com.code.dom.java.InnerClass;
-import com.code.dom.java.InnerEnum;
-import com.code.dom.java.InnerInterface;
+import com.code.dom.java.define.CompilationUnit;
+import com.code.dom.java.define.Field;
+import com.code.dom.java.define.FullyQualifiedJavaType;
+import com.code.dom.java.define.InitializationBlock;
+import com.code.dom.java.define.InnerClass;
+import com.code.dom.java.define.InnerEnum;
+import com.code.dom.java.define.InnerInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.code.dom.java;
+package com.code.dom.java.define;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.TreeSet;
 
 /**
  * @Author: wg
- * @Date: 2021/12/27 下午9:48
+ * @Date: 2021/12/27 下午9:56
  */
-public class Interface extends InnerInterface implements CompilationUnit {
+public class TopLevelEnumeration extends InnerEnum implements CompilationUnit {
 
     private final Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
 
@@ -17,12 +17,12 @@ public class Interface extends InnerInterface implements CompilationUnit {
 
     private final List<String> fileCommentLines = new ArrayList<>();
 
-    public Interface(FullyQualifiedJavaType type) {
+    public TopLevelEnumeration(FullyQualifiedJavaType type) {
         super(type);
     }
 
-    public Interface(String type) {
-        this(new FullyQualifiedJavaType(type));
+    public TopLevelEnumeration(String type) {
+        super(type);
     }
 
     @Override
@@ -33,7 +33,8 @@ public class Interface extends InnerInterface implements CompilationUnit {
     @Override
     public void addImportedType(FullyQualifiedJavaType importedType) {
         if (importedType.isExplicitlyImported()
-                && !importedType.getPackageName().equals(getType().getPackageName())) {
+                && !importedType.getPackageName().equals(
+                getType().getPackageName())) {
             importedTypes.add(importedType);
         }
     }
@@ -73,3 +74,4 @@ public class Interface extends InnerInterface implements CompilationUnit {
         return visitor.visit(this);
     }
 }
+

@@ -1,10 +1,10 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.JavaVisibility;
-import com.code.dom.java.Method;
+import com.code.dom.java.define.JavaVisibility;
+import com.code.dom.java.define.Method;
 import com.code.dom.java.utils.CustomCollectors;
-import com.code.dom.java.CompilationUnit;
-import com.code.dom.java.JavaDomUtils;
+import com.code.dom.java.define.CompilationUnit;
+import com.code.dom.java.define.JavaDomUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.TopLevelEnumeration;
+import com.code.dom.java.define.TopLevelEnumeration;
 
 import java.util.ArrayList;
 import java.util.List;

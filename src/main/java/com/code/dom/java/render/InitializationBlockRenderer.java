@@ -1,6 +1,6 @@
 package com.code.dom.java.render;
 
-import com.code.dom.java.InitializationBlock;
+import com.code.dom.java.define.InitializationBlock;
 
 import java.util.ArrayList;
 import java.util.List;

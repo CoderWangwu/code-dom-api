@@ -1,6 +1,6 @@
 package com.code.dom.java.utils;
 
-import com.code.dom.java.CompilationUnit;
+import com.code.dom.java.define.CompilationUnit;
 
 /**
  * @Author: wg
