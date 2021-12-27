@@ -1,0 +1,118 @@
+package dom.java.render;
+
+import dom.java.CompilationUnit;
+import dom.java.JavaDomUtils;
+import dom.java.JavaVisibility;
+import dom.java.Method;
+import dom.java.utils.CustomCollectors;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * @Author: wg
+ * @Date: 2021/12/27 下午10:09
+ */
+public class MethodRenderer {
+    private final TypeParameterRenderer typeParameterRenderer = new TypeParameterRenderer();
+    private final ParameterRenderer parameterRenderer = new ParameterRenderer();
+    private final BodyLineRenderer bodyLineRenderer = new BodyLineRenderer();
+
+    public List<String> render(Method method, boolean inInterface, CompilationUnit compilationUnit) {
+        List<String> lines = new ArrayList<>();
+
+        lines.addAll(method.getJavaDocLines());
+        lines.addAll(method.getAnnotations());
+        lines.add(getFirstLine(method, inInterface, compilationUnit));
+
+        if (!method.isAbstract() && !method.isNative()) {
+            lines.addAll(bodyLineRenderer.render(method.getBodyLines()));
+            lines.add("}"); //$NON-NLS-1$
+        }
+
+        return lines;
+    }
+
+    private String getFirstLine(Method method, boolean inInterface, CompilationUnit compilationUnit) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(renderVisibility(method, inInterface));
+
+        if (method.isAbstract() && !inInterface) {
+            sb.append("abstract "); //$NON-NLS-1$
+        }
+
+        if (method.isDefault()) {
+            sb.append("default "); //$NON-NLS-1$
+        }
+
+        if (method.isStatic()) {
+            sb.append("static "); //$NON-NLS-1$
+        }
+
+        if (method.isFinal()) {
+            sb.append("final "); //$NON-NLS-1$
+        }
+
+        if (method.isSynchronized()) {
+            sb.append("synchronized "); //$NON-NLS-1$
+        }
+
+        if (method.isNative()) {
+            sb.append("native "); //$NON-NLS-1$
+        }
+
+        sb.append(renderTypeParameters(method, compilationUnit));
+
+        if (!method.isConstructor()) {
+            sb.append(method.getReturnType()
+                    .map(t -> JavaDomUtils.calculateTypeName(compilationUnit, t))
+                    .orElse("void")); //$NON-NLS-1$
+
+            sb.append(' ');
+        }
+
+        sb.append(method.getName());
+
+        sb.append(renderParameters(method, compilationUnit));
+
+        sb.append(renderExceptions(method, compilationUnit));
+
+        if (method.isAbstract() || method.isNative()) {
+            sb.append(';');
+        } else {
+            sb.append(" {"); //$NON-NLS-1$
+        }
+        return sb.toString();
+
+    }
+
+    private String renderVisibility(Method method, boolean inInterface) {
+        if (inInterface && method.getVisibility() == JavaVisibility.PUBLIC) {
+            return ""; //$NON-NLS-1$
+        }
+
+        return method.getVisibility().getValue();
+    }
+
+    // should return an empty string if no type parameters
+    private String renderTypeParameters(Method method, CompilationUnit compilationUnit) {
+        return method.getTypeParameters().stream()
+                .map(tp -> typeParameterRenderer.render(tp, compilationUnit))
+                .collect(CustomCollectors.joining(", ", "<", "> ")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+
+    private String renderParameters(Method method, CompilationUnit compilationUnit) {
+        return method.getParameters().stream()
+                .map(p -> parameterRenderer.render(p, compilationUnit))
+                .collect(Collectors.joining(", ", "(", ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+
+    // should return an empty string if no exceptions
+    private String renderExceptions(Method method, CompilationUnit compilationUnit) {
+        return method.getExceptions().stream()
+                .map(jt -> JavaDomUtils.calculateTypeName(compilationUnit, jt))
+                .collect(CustomCollectors.joining(", ", " throws ", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+}
